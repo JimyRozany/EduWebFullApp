@@ -7,21 +7,33 @@
         </span>
         <div class="form-box login">
             <h2>Login</h2>
-            <form action="#">
+            <form action="{{ route('user-login') }}" method="POST">
+
+                @csrf
+                @method('POST')
                 <div class="input-box">
                     <span class="icon">
                         <ion-icon name="mail-outline"></ion-icon>
                     </span>
-                    <input type="email" required>
+                    <input type="email" name="email" required>
                     <label>Email</label>
+                    @error('email')
+                        <div style="color: #ff0033 ;">{{ $message }}</div>
+                    @enderror
+                    
                 </div>
                 <div class="input-box">
                     <span class="icon">
                         <ion-icon name="lock-closed-outline"></ion-icon>
                     </span>
-                    <input type="password" required>
+                    <input type="password" name="password" required>
                     <label>Password</label>
+                    @error('password')
+                        <div style="color: #ff0033 ;">
+                            should be ( 0-9, Zz, ! @ # $ % )</div>
+                    @enderror
                 </div>
+
                 <div class="remember-forgot" style="justify-content: space-between;">
 
                     <label class="custom-checkbox">
@@ -44,29 +56,41 @@
 
         <div class="form-box register">
             <h2>Registration</h2>
-            <form action="#">
+            <form action="{{ route('user-register') }}" method="POST">
 
+                @csrf
+                {{-- @method("POST") --}}
                 <div class="input-box">
                     <span class="icon">
                         <ion-icon name="person-circle-outline"></ion-icon>
                     </span>
-                    <input type="text" required>
+                    <input type="text" name="name" required>
                     <label>Username</label>
+                    @error('name')
+                        <div>{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="input-box">
                     <span class="icon">
                         <ion-icon name="mail-outline"></ion-icon>
                     </span>
-                    <input type="email" required>
+                    <input type="email" name="email" required>
                     <label>Email</label>
+                    @error('email')
+                        <div style="color: #ff0033 ;">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="input-box">
                     <span class="icon">
                         <ion-icon name="lock-closed-outline"></ion-icon>
                     </span>
-                    <input type="password" required>
+                    <input type="password" name="password" required>
                     <label>Password</label>
+                    @error('password')
+                        <div style="color: #ff0033 ;">
+                            should be ( 0-9, Zz, ! @ # $ % )</div>
+                    @enderror
                 </div>
                 <div class="remember-forgot">
 
