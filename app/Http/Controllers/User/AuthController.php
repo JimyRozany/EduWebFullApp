@@ -17,14 +17,15 @@ class AuthController extends Controller
             "name" => $request->name ,
             "email" => $request->email ,
             "password" => bcrypt($request->password) ,
-
         ]);
 
+        Auth::attempt(['email' => $request->email, 'password' => $request->password]) ;
 
-        // TODO:soite alert success
-        return view("pages.home");
-    
+        return view("vrify-email")->with("user", $user);
+
     }
+
+
     public function login(LoginUserRequest $request){
 
         // Attempt to authenticate the user
